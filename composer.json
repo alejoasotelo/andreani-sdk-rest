@@ -1,0 +1,14 @@
+{
+    "name": "alejoasotelo/andreani",
+    "description": "Librer\u0000a para conectar con la Api REST de Andreani.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Alejo Sotelo",
+            "email": "soporte@alejosotelo.com.ar"
+        }
+    ],
+    "require": {
+        "joomla/http": "~1.0"
+    }
+}
