@@ -1,8 +1,6 @@
-<!-- PROJECT SHIELDS -->
-[![Packagist][packagist-shield]](https://packagist.org/packages/alejoasotelo/andreani)
-[![Contributors][contributors-shield]](https://github.com/alejoasotelo/andreani-sdk-rest/graphs/contributors)
-[![Closed issues][issues-shield]](https://github.com/alejoasotelo/andreani-sdk-rest/issues)
-[![License][license-shield]](https://github.com/alejoasotelo/andreani-sdk-rest/blob/master/LICENSE)
+<!-- BADGES -->
+[![Latest Stable Version](https://poser.pugx.org/alejoasotelo/andreani/v/stable)](https://packagist.org/packages/alejoasotelo/andreani)
+[![License](https://poser.pugx.org/alejoasotelo/andreani/license)](https://packagist.org/packages/alejoasotelo/andreani)
 
 Andreani SDK Rest - PHP
 =================
