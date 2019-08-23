@@ -1,3 +1,9 @@
+<!-- PROJECT SHIELDS -->
+[![Packagist][packagist-shield]](https://packagist.org/packages/alejoasotelo/andreani)
+[![Contributors][contributors-shield]](https://github.com/alejoasotelo/andreani-sdk-rest/graphs/contributors)
+[![Closed issues][issues-shield]](https://github.com/alejoasotelo/andreani-sdk-rest/issues)
+[![License][license-shield]](https://github.com/alejoasotelo/andreani-sdk-rest/blob/master/LICENSE)
+
 Andreani SDK Rest - PHP
 =================
 Andreani SDK Rest es una librería para conectar con la Api Rest de Andreani (https://andreani.docs.apiary.io).
