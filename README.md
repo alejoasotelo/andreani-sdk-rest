@@ -2,8 +2,10 @@
 [![Latest Stable Version](https://poser.pugx.org/alejoasotelo/andreani/v/stable)](https://packagist.org/packages/alejoasotelo/andreani)
 [![License](https://poser.pugx.org/alejoasotelo/andreani/license)](https://packagist.org/packages/alejoasotelo/andreani)
 
-Andreani SDK Rest - PHP
-=================
+![Andreani](https://miro.medium.com/max/236/1*SU6pjCbwtPaLTr27wQJgIQ.png)
+
+# Andreani SDK Rest - PHP
+
 Andreani SDK Rest es una librería para conectar con la Api Rest de Andreani (https://andreani.docs.apiary.io).
 
 Es necesario para poder conectar tus credenciales de Andreani (usuario, contraseña y cliente).
@@ -13,14 +15,18 @@ Usuario: alejo
 Password: sotelo
 Cliente: CL0009999
 
-Instalación vía Composer
-==========================
+### Artículo en medium
+
+[Ver artículo](https://medium.com/@alejoasotelo/librer%C3%ADa-php-para-andreani-api-rest-128c109f4e0b)
+
+### Instalación vía Composer
+
 ```bash
 composer require alejoasotelo/andreani
 ```
 
-Cómo se utiliza la libreria?
-==========================
+### Cómo se utiliza la libreria?
+
 La librería es sencilla, se puede ver un ejemplo en example.php
 ```php
 <?php
