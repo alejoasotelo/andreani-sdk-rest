@@ -12,7 +12,7 @@ class Andreani
     const BASE_URL_DEV = 'https://api.qa.andreani.com';
     const BASE_URL_PROD = 'https://api.andreani.com';
 
-    private $version = '0.0.1';
+    private $version = '0.1.0';
 
     private $debug = true;
     private $http = null;
