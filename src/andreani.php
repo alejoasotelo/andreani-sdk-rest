@@ -4,6 +4,8 @@ namespace AlejoASotelo;
 
 use Joomla\Http\Transport\Curl as curlTransport;
 use Joomla\Http\Http;
+use Andreani\Andreani as AndreaniLegacy;
+use Andreani\Requests\ConsultarSucursales;
 
 class Andreani
 {
@@ -88,6 +90,31 @@ class Andreani
         $uri = $this->getBaseUrl('/v1/sucursales');
 
         return $this->makeRequest($uri, 'get');
+    }
+
+    /**
+     * Devuelve las sucursales recomendadas por Andreani
+     * según el Código Postal. Utiliza el webservice viejo (SOAP).
+     *
+     * @param int $codigoPostal
+     *
+     * @return array
+     */
+    public function getSucursalByCodigoPostal($codigoPostal)
+    {
+        $request = new ConsultarSucursales();
+        $request->setCodigoPostal($codigoPostal);
+
+        $andreani = new AndreaniLegacy($this->user, $this->password, $this->debug ? 'dev' : 'test');
+        $response = $andreani->call($request);
+
+        if ($response->isValid()) {
+            $result = $response->getMessage()->ConsultarSucursalesResult;
+
+            return $result;
+        } else {
+            return null;
+        }
     }
 
     public function getProvincias()
