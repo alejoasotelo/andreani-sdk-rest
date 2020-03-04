@@ -45,3 +45,29 @@ $result = $ws->getProvincias();
 
 var_dump($result);
 ```
+
+### getSucursales()
+
+Obtener todas las sucursales de Andreani:
+```php
+<?php
+...
+
+$ws = new Andreani($user, $pass, $cliente, $debug);
+$result = $ws->getSucursales();
+
+var_dump($result);
+```
+
+### getSucursalByCodigoPostal($codigoPostal)
+
+Obtener las sucursales recomendadas para un código postal:
+```php
+<?php
+...
+
+$ws = new Andreani($user, $pass, $cliente, $debug);
+$result = $ws->getSucursalByCodigoPostal(1832);
+
+var_dump($result);
+```
