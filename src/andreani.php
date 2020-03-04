@@ -20,6 +20,7 @@ class Andreani
     private $password = null;
     private $cliente = null;
     private $response = null;
+    private $token = null;
 
     public function __construct($user, $password, $cliente, $debug = true)
     {
@@ -32,6 +33,7 @@ class Andreani
         $this->cliente = $cliente;
         $this->debug = $debug;
         $this->response = null;
+        $this->token = null;
 
         $options = array(
             'curl.certpath' => __DIR__.'/vendor/joomla/http/src/Transport/cacert.pem',
@@ -74,6 +76,10 @@ class Andreani
 
     public function getToken()
     {
+        if (!is_null($this->token)) {
+            return $this->token;
+        }
+
         $response = $this->login();
 
         if ($response->code == 200) {
