@@ -15,7 +15,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "joomla/http": "~1.0"
+        "joomla/http": "~1.0",
+        "andreani/sdk-php": "^1.5"
     },
     "autoload": {
         "psr-4": {

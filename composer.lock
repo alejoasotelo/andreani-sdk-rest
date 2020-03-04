@@ -4,8 +4,35 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ca96f0987bf3ad828c335d096cadab8",
+    "content-hash": "4066a2d31a7e0140b1a8431afb447d4c",
     "packages": [
+        {
+            "name": "andreani/sdk-php",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eandreani/sdk-php.git",
+                "reference": "3fe5738ec9c2ddbc34e850bd8e89d730772ef167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eandreani/sdk-php/zipball/3fe5738ec9c2ddbc34e850bd8e89d730772ef167",
+                "reference": "3fe5738ec9c2ddbc34e850bd8e89d730772ef167",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Andreani": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "description": "SDK de Andreani para PHP",
+            "time": "2018-01-10T16:29:22+00:00"
+        },
         {
             "name": "composer/ca-bundle",
             "version": "1.2.3",
@@ -167,6 +194,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.3.0"
+    },
     "platform-dev": []
 }
