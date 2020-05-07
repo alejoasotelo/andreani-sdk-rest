@@ -71,3 +71,26 @@ $result = $ws->getSucursalByCodigoPostal(1832);
 
 var_dump($result);
 ```
+
+### cotizarEnvio($cpDestino, $contrato, $bultos)
+
+Obtener la cotización para un envío según código postal, contrato, bultos, cliente, etc:
+```php
+<?php
+...
+
+$ws = new Andreani($user, $pass, $cliente, $debug);
+
+$bultos = array(
+    array(
+        'volumen' => 200,
+        'kilos' => 1.3,
+        'pesoAforado' => 5,
+        'valorDeclarado' => 1200, // $1200
+    ),
+);
+
+$result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
+
+var_dump($result);
+```
