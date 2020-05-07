@@ -194,6 +194,52 @@ class Andreani
         return $this->makeRequest($uri, 'get');
     }
 
+    /**
+     * Devuelve la tarifa de un envio a partir de parametros como el destino, el peso, el volumen, el valor declarado del producto.
+     *
+     * $bultos es un array con el siguiente formato:
+     *      bultos[0][largoCm] 	double 	Largo del bulto en cm. Opcional. Sirve para calcular el volumen.
+     *      bultos[0][anchoCm] 	double 	Ancho del bulto en cm. Opcional. Sirve para calcular el volumen.
+     *      bultos[0][altoCm] 	double 	Alto del bulto en cm. Opcional. Sirve para calcular el volumen.
+     *      bultos[0][volumen] 	double 	Volumen del bulto en cm3. Es obligatorio ingresar volumen, peso o peso aforado.
+     *      bultos[0][kilos] 	double 	Peso del bulto en kilos. Es obligatorio ingresar volumen, peso o peso aforado.
+     *      bultos[0][pesoAforado] 	double 	Peso aforado del bulto en kilos. Es obligatorio ingresar volumen, peso o peso aforado.
+     *      bultos[0][valorDeclarado] 	integer 	Valor declarado del contenido del bulto. Sirve para el seguro. Obligatorio.
+     *      bultos[0][categoria] 	string 	Categoria del bulto. Solo aplica a ciertos contratos. Invalida a los otros campos del bulto. Opcional.
+     *
+     * @param int    $cpDestino      Codigo postal del destino del envio
+     * @param string $contrato       Numero de contrato con Andreani
+     * @param array  $bultos         informacion de cada bulto a enviar
+     * @param string $cliente        Numero de cliente con Andreani. Si no se pasa como parametro se toma el del constructor.
+     * @param string $sucursalOrigen Codigo de sucursal donde se impone el envio. En caso de no ingresarla, se toma la configurada por contrato.
+     * @param string $pais           pais destino del envío
+     *
+     * @return void
+     */
+    public function cotizarEnvio($cpDestino, $contrato, $bultos, $cliente = null, $sucursalOrigen = null, $pais = null)
+    {
+        $cliente = is_null($cliente) ? $this->cliente : $cliente;
+
+        $params = array(
+            'cpDestino' => $cpDestino,
+            'contrato' => $contrato,
+            'bultos' => $bultos,
+            'cliente' => $cliente,
+        );
+
+        if (!is_null($sucursalOrigen)) {
+            $params['sucursalOrigen'] = $sucursalOrigen;
+        }
+
+        if (!is_null($pais)) {
+            $params['pais'] = $pais;
+        }
+
+        $uri = $this->getBaseUrl('/v1/tarifas').'?'.http_build_query($params);
+
+        return $this->makeRequest($uri, 'get');
+    }
+
     protected function makeRequest($uri, $method = 'get', $data = null)
     {
         $availableMethods = array(
