@@ -12,7 +12,10 @@ class Andreani
     const BASE_URL_DEV = 'https://api.qa.andreani.com';
     const BASE_URL_PROD = 'https://api.andreani.com';
 
-    private $version = '0.2.0';
+    const API_V1 = 1;
+    const API_V2 = 2;
+
+    private $version = '0.2.1';
 
     private $debug = true;
     private $http = null;
@@ -135,9 +138,19 @@ class Andreani
         return $this->getProvincias();
     }
 
-    public function addOrden($data)
+    /**
+     * Crea una nueva orden
+     * Una órden de envío es un pedido de envío que se le hace a Andreani. 
+     * De esta forma Andreani puede planificar la entrega sin tener la carga todavía en su poder. 
+     *
+     * @param array $data
+     * @param int $apiVersion Permite cambiar la versión de la api: Andreani::API_V1 o Andreani::API_V2
+     * @return void
+     */
+    public function addOrden($data, $apiVersion = self::API_V1)
     {
-        $uri = $this->getBaseUrl('/v1/ordenesDeEnvio');
+        $endpoint = $apiVersion == self::API_V2 ? '/v2/ordenes-de-envio' : '/v1/ordenesDeEnvio';
+        $uri = $this->getBaseUrl($endpoint);
 
         return $this->makeRequest($uri, 'post', $data);
     }
