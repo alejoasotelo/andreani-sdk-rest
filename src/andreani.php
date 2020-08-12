@@ -15,7 +15,7 @@ class Andreani
     const API_V1 = 1;
     const API_V2 = 2;
 
-    private $version = '0.2.3';
+    private $version = '0.3.0';
 
     private $debug = true;
     private $http = null;
@@ -166,7 +166,7 @@ class Andreani
 
     public function getOrden($numeroAndreani)
     {
-        $uri = $this->getBaseUrl('/v1/ordenesDeEnvio/'.$numeroAndreani);
+        $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani);
 
         return $this->makeRequest($uri, 'get');
     }
