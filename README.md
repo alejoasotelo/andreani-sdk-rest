@@ -94,3 +94,9 @@ $result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
 
 var_dump($result);
 ```
+
+### addOrden($data)
+
+Agrega/crea una orden (envío) pasandole como parámetro $data con la info del envío. Puede ser pasado como un array o como string (json_encode).
+
+Ver ejemplo en el archivo [examples/addOrden.php](examples/addOrden.php)
