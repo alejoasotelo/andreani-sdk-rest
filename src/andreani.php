@@ -15,7 +15,7 @@ class Andreani
     const API_V1 = 1;
     const API_V2 = 2;
 
-    private $version = '0.2.2';
+    private $version = '0.2.3';
 
     private $debug = true;
     private $http = null;
@@ -288,7 +288,8 @@ class Andreani
 
         $this->response = $response;
 
-        if ($response->code == 200) {
+        // Si es una petición satisfactoria devuelvo el body.
+        if ($response->code >= 200 && $response->code <= 299) {
             return json_decode($response->body);
         } else {
             return null;
