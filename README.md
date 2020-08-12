@@ -35,6 +35,8 @@ La librería es sencilla, se puede ver ejemplos en la carpeta [examples](example
 
 ### getProvincias()
 
+Lista las provinicas reconocidas según [ISO-3166-2:AR](https://es.wikipedia.org/wiki/ISO_3166-2:AR):
+
 ```php
 <?php
 
