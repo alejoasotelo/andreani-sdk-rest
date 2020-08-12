@@ -15,7 +15,7 @@ class Andreani
     const API_V1 = 1;
     const API_V2 = 2;
 
-    private $version = '0.2.1';
+    private $version = '0.2.2';
 
     private $debug = true;
     private $http = null;
@@ -255,6 +255,10 @@ class Andreani
 
     protected function makeRequest($uri, $method = 'get', $data = null)
     {
+        if (!is_null($data) && !is_string($data)) {
+            $data = json_encode($data);
+        }
+
         $availableMethods = array(
             'get',
             'post',
