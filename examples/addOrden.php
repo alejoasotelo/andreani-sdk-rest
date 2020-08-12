@@ -15,6 +15,8 @@ $debug = true;
 
 $ws = new Andreani($user, $pass, $cliente, $debug);
 
+
+// Datos de ejemplo obtenidos de https://developers.andreani.com/documentacion/2#crearOrden
 $orden = [
     'contrato' => '300006611',
     'origen' => [

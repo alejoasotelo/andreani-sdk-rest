@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once dirname(__DIR__).'/vendor/autoload.php';
 
 use AlejoASotelo\Andreani;
 
@@ -14,9 +14,6 @@ $cliente = 'CL9999999';
 $debug = true;
 
 $ws = new Andreani($user, $pass, $cliente, $debug);
-$result = $ws->getProvincias();
-
-var_dump($result);
 
 $bultos = array(
     array(
