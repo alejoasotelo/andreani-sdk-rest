@@ -6,7 +6,7 @@
 
 # Andreani SDK Rest - PHP
 
-Andreani SDK Rest es una librería para conectar con la Api Rest de Andreani (https://andreani.docs.apiary.io).
+Andreani SDK Rest es una librería para conectar con la Api Rest de Andreani ([ver documentación](https://developers.andreani.com/documentacion)).
 
 Es necesario para poder conectar tus credenciales de Andreani (usuario, contraseña y cliente).
 
@@ -15,19 +15,24 @@ Usuario: alejo
 Password: sotelo
 Cliente: CL0009999
 
-### Artículo en medium
+## Artículo en medium
 
 [Ver artículo](https://medium.com/@alejoasotelo/librer%C3%ADa-php-para-andreani-api-rest-128c109f4e0b)
 
-### Instalación vía Composer
+## Instalación vía Composer
 
 ```bash
 composer require alejoasotelo/andreani
 ```
 
-### Cómo se utiliza la libreria?
 
-La librería es sencilla, se puede ver un ejemplo en example.php
+## Cómo se utiliza la libreria?
+
+La librería es sencilla, se puede ver ejemplos en la carpeta [examples](examples).
+
+
+### getProvincias()
+
 ```php
 <?php
 
@@ -46,6 +51,7 @@ $result = $ws->getProvincias();
 var_dump($result);
 ```
 
+
 ### getSucursales()
 
 Obtener todas las sucursales de Andreani:
@@ -59,6 +65,7 @@ $result = $ws->getSucursales();
 var_dump($result);
 ```
 
+
 ### getSucursalByCodigoPostal($codigoPostal)
 
 Obtener las sucursales recomendadas para un código postal:
@@ -71,6 +78,7 @@ $result = $ws->getSucursalByCodigoPostal(1832);
 
 var_dump($result);
 ```
+
 
 ### cotizarEnvio($cpDestino, $contrato, $bultos)
 
@@ -94,6 +102,9 @@ $result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
 
 var_dump($result);
 ```
+
+Ver ejemplo en el archivo [examples/cotizarEnvio.php](examples/cotizarEnvio.php)
+
 
 ### addOrden($data)
 
