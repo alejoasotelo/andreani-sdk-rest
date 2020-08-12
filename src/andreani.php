@@ -139,18 +139,20 @@ class Andreani
     }
 
     /**
+     * @since 0.2.2 $apiVersion no se usa más, ahora se usa siempre la v2.
+     *
      * Crea una nueva orden
-     * Una órden de envío es un pedido de envío que se le hace a Andreani. 
-     * De esta forma Andreani puede planificar la entrega sin tener la carga todavía en su poder. 
+     * Una órden de envío es un pedido de envío que se le hace a Andreani.
+     * De esta forma Andreani puede planificar la entrega sin tener la carga todavía en su poder.
      *
      * @param array $data
-     * @param int $apiVersion Permite cambiar la versión de la api: Andreani::API_V1 o Andreani::API_V2
+     * @param int   $apiVersion @deprecated usar addOrden($data).
+     *
      * @return void
      */
     public function addOrden($data, $apiVersion = self::API_V1)
     {
-        $endpoint = $apiVersion == self::API_V2 ? '/v2/ordenes-de-envio' : '/v1/ordenesDeEnvio';
-        $uri = $this->getBaseUrl($endpoint);
+        $uri = $this->getBaseUrl('/v2/ordenes-de-envio');
 
         return $this->makeRequest($uri, 'post', $data);
     }
