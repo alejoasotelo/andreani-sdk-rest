@@ -10,10 +10,12 @@ Andreani SDK Rest es una librería para conectar con la Api Rest de Andreani ([v
 
 Es necesario para poder conectar tus credenciales de Andreani (usuario, contraseña y cliente).
 
-Ejemplo:
+### Ejemplo:
+```bash
 Usuario: alejo
 Password: sotelo
 Cliente: CL0009999
+```
 
 ## Artículo en medium
 
