@@ -72,13 +72,27 @@ var_dump($result);
 
 ### getSucursalByCodigoPostal($codigoPostal)
 
-Obtener las sucursales recomendadas para un código postal:
+Obtener las sucursales recomendadas para un código postal usando la api v2:
 ```php
 <?php
 ...
 
 $ws = new Andreani($user, $pass, $cliente, $debug);
 $result = $ws->getSucursalByCodigoPostal(1832);
+
+var_dump($result);
+```
+
+
+### getSucursalByCodigoPostalLegacy($codigoPostal)
+
+Obtener las sucursales recomendadas para un código postal usando la api SOAP:
+```php
+<?php
+...
+
+$ws = new Andreani($user, $pass, $cliente, $debug);
+$result = $ws->getSucursalByCodigoPostalLegacy(1832);
 
 var_dump($result);
 ```
