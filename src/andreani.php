@@ -134,12 +134,14 @@ class Andreani
      *
      * @return array
      */
-    public function getSucursalByCodigoPostal($codigoPostal)
+    public function getSucursalByCodigoPostalLegacy($codigoPostal)
     {
+        trigger_error('Esta funcion será deprecada por usar la versión vieja de Andreani (SOAP). Usar getSucursalByCoditoPostal($coditoPostal)', E_USER_NOTICE);
+
         $request = new ConsultarSucursales();
         $request->setCodigoPostal($codigoPostal);
 
-        $andreani = new AndreaniLegacy($this->user, $this->password, $this->debug ? 'dev' : 'test');
+        $andreani = new AndreaniLegacy($this->user, $this->password, $this->debug ? 'test' : 'prod');
         $response = $andreani->call($request);
 
         if ($response->isValid()) {
