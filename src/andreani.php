@@ -13,6 +13,7 @@ class Andreani
     const BASE_URL_PROD = 'https://api.andreani.com';
 
     const API_V1 = 1;
+    const API_V2 = 2;
 
     private $version = '0.3.0';
 
@@ -93,9 +94,13 @@ class Andreani
         return false;
     }
 
-    public function getSucursales()
+    public function getSucursales($version = self::API_V2)
     {
-        $uri = $this->getBaseUrl('/v1/sucursales');
+        $endpoint = $version == self::API_V1 ? '/v1' : '/v2';
+        $uri = $this->getBaseUrl($endpoint . '/sucursales');
+
+        return $this->makeRequest($uri, 'get');
+    }
 
         return $this->makeRequest($uri, 'get');
     }
