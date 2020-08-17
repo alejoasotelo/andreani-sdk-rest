@@ -133,6 +133,30 @@ class Andreani
         return $this->makeRequest($uri, 'get');
     }
 
+    /**
+     * Devuelve la latitud y longitud de una dirección.
+     * Sirve para geolocalizar ubicaciones en un mapa por ejemplo.
+     */
+    public function getDirecciones($provincia, $localidad, $codigoPostal, $calle, $numero, $piso = '', $dpto = '')
+    {
+        $uri = $this->getBaseUrl('/v1/direcciones');
+
+        $params = [
+            'provincia' => $provincia,
+            'localidad' => $localidad,
+            'codigopostal' => $codigoPostal,
+            'calle' => $calle,
+            'numero' => $numero,
+            'piso' => $piso,
+            'dpto' => $dpto,
+            'geolocalizar' => true
+        ];
+
+        $uri .= '?' . http_build_query($params);
+
+        return $this->makeRequest($uri, 'get');
+    }
+
     public function getRegiones()
     {
         return $this->getProvincias();
