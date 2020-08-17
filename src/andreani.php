@@ -102,6 +102,27 @@ class Andreani
         return $this->makeRequest($uri, 'get');
     }
 
+    /**
+     * Devuelve las sucursales recomendadas por Andreani según el Código Postal.
+     *
+     * @param int $codigoPostal
+     * @param string $canal 'B2C' o 'B2B'
+     *
+     * @return array
+     */
+    public function getSucursalByCodigoPostal($codigoPostal, $canal = 'B2C')
+    {
+        $uri = $this->getBaseUrl('/v2/sucursales');
+        
+        $canales = ['B2C', 'B2B'];
+
+        $params = [
+            'codigoPostal' => $codigoPostal,
+            'canal' => in_array($canal, $canales) ? $canal : 'B2C',
+        ];
+
+        $uri .= '?' . http_build_query($params);
+
         return $this->makeRequest($uri, 'get');
     }
 
