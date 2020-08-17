@@ -4,13 +4,13 @@
 
 ### Added
 
-- Agregué getSucursalByCodigoPostalLegacy para poder seguir utilizando la Api SOAP hasta que la deprequen.
+- Agregué [getSucursalByCodigoPostalLegacy](src/andreani.php#L137) para poder seguir utilizando la Api SOAP hasta que la deprequen.
 - Agregué la función getDirecciones para obtener la geolocalización de una dirección.
 - Agregué CHANGELOG.
 
 ### Changed
 
-- getSucursalByCodigoPostal ahora utiliza la api versión 2.
+- [getSucursalByCodigoPostal](src/andreani.php#L113) ahora utiliza la api versión 2.
 - Cambié la versión de getSucursales a la v2 por default, con un parametro para poder cambiar a la v1.
 
 ## 0.3.0 - (2020-08-12)
