@@ -13,7 +13,6 @@ class Andreani
     const BASE_URL_PROD = 'https://api.andreani.com';
 
     const API_V1 = 1;
-    const API_V2 = 2;
 
     private $version = '0.3.0';
 
