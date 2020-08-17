@@ -5,7 +5,7 @@
 ### Added
 
 - Agregué [getSucursalByCodigoPostalLegacy](src/andreani.php#L137) para poder seguir utilizando la Api SOAP hasta que la deprequen.
-- Agregué la función getDirecciones para obtener la geolocalización de una dirección.
+- Agregué la función [getDirecciones](src/andreani.php#L167) para obtener la geolocalización de una dirección.
 - Agregué CHANGELOG.
 
 ### Changed
@@ -17,4 +17,4 @@
 
 ### Changed
 
-- Cambié a la versión 2 el endpoint de getOrden.
+- Cambié a la versión 2 el endpoint de [getOrden](src/andreani.php#L218).
