@@ -129,3 +129,8 @@ Ver ejemplo en el archivo [examples/cotizarEnvio.php](examples/cotizarEnvio.php)
 Agrega/crea una orden (envío) pasandole como parámetro $data con la info del envío. Puede ser pasado como un array o como string (json_encode).
 
 Ver ejemplo en el archivo [examples/addOrden.php](examples/addOrden.php)
+
+## Querés colaborar con el proyecto?
+
+Podés enviar tu mejoras o pull request o podés
+[![Invitarme un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_2.svg)](https://cafecito.app/alejoasotelo)
