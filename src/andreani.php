@@ -208,13 +208,6 @@ class Andreani
         return $this->makeRequest($uri, 'post', $data);
     }
 
-    public function removeOrden($numeroAndreani)
-    {
-        $uri = $this->getBaseUrl('/v1/ordenesDeEnvio/'.$numeroAndreani);
-
-        return $this->makeRequest($uri, 'delete');
-    }
-
     public function getOrden($numeroAndreani)
     {
         $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani);
