@@ -224,9 +224,19 @@ class Andreani
 
     public function getEtiqueta($numeroAndreani)
     {
-        $uri = $this->getBaseUrl('/v1/etiquetas/'.$numeroAndreani);
+        $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani.'/etiquetas');
 
-        return $this->makeRequest($uri, 'get');
+        $this->makeRequest($uri, 'get');
+        
+        $response = $this->getResponse();
+
+        if ($response->code == 200) {
+            return (object)array(
+                'pdf' => $response->body
+            );
+        }
+        
+        return json_decode($response->body);
     }
 
     public function getEnvio($numeroAndreani)
