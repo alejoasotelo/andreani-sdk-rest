@@ -25,6 +25,10 @@ $bultos = array(
 );
 
 // Contrato y Cliente de ejemplo obtenidos de https://developers.andreani.com/documentacion/3#cotizarEnvio
-$result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
+$response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
 
-var_dump($result);
+var_dump($response);
+
+if (!is_null($response)) {
+    file_put_contents(__DIR__.'/cotizarEnvio.json', json_encode($response));
+}
