@@ -129,3 +129,27 @@ Ver ejemplo en el archivo [examples/cotizarEnvio.php](examples/cotizarEnvio.php)
 Agrega/crea una orden (envío) pasandole como parámetro $data con la info del envío. Puede ser pasado como un array o como string (json_encode).
 
 Ver ejemplo en el archivo [examples/addOrden.php](examples/addOrden.php)
+
+
+### getEtiqueta($numeroAndreani)
+
+Devuelve una etiqueta en formato PDF, que puede ser de bulto o remito a partir del numero andreani brindado en el alta. 
+
+```
+$response = $ws->getEtiqueta($numeroAndreani);
+
+if (!is_null($response) && isset($response->pdf)) {
+    file_put_contents(__DIR__.'/getEtiqueta.pdf', $response->pdf);
+}
+```
+
+Ver ejemplo en el archivo [examples/getEtiqueta.php](examples/getEtiqueta.php)
+
+### Cancelar envíos
+
+En la nueva API no se pueden cancelar envíos. Andreani toma como cancelado un envío si no entra en distribución.
+
+
+## Contacto API Andreani
+
+Email: apis[arroba]andreani.com
