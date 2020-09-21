@@ -116,7 +116,7 @@ Ver ejemplo en el archivo [examples/addOrden.php](examples/addOrden.php)
 
 Devuelve una etiqueta en formato PDF, que puede ser de bulto o remito a partir del numero andreani brindado en el alta. 
 
-```
+```php
 $response = $ws->getEtiqueta($numeroAndreani);
 
 if (!is_null($response) && isset($response->pdf)) {
