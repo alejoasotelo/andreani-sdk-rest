@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1 - (2020-09-21)
+
+### Changed
+
+- Cambié la licencia a GNU GPL v2
+
 ## 0.5.0 - (2020-09-18)
 
 ### Added
