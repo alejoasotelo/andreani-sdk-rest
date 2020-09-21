@@ -145,7 +145,9 @@ Proceso de Envío:
 
 ## Contacto API Andreani
 
-Email: apis[arroba]andreani.com
+Si tenés dudas respecto a la API de Andreani este es el email de ellos: apis[arroba]andreani.com
+
+(!) Aclaración: este es un proyecto personal, yo no tengo ningún tipo de vinculo con Andreani, comparto mi conocimiento en este repositorio.
 
 ## Querés colaborar con el proyecto?
 
