@@ -146,3 +146,8 @@ Proceso de Envío:
 ## Contacto API Andreani
 
 Email: apis[arroba]andreani.com
+
+## Querés colaborar con el proyecto?
+
+Podés enviar tu mejoras o pull request o podés
+[![Invitarme un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_2.svg)](https://cafecito.app/alejoasotelo)
