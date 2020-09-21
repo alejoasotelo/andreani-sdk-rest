@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 - (2020-09-18)
+
+### Changed
+
+- Corregí la función getEtiqueta para que use la v2 y agregué un ejemplo de cómo usarla.
+- Eliminé la función removeOrden porque no se puede eliminar ordenes con la api rest. Un envío se considera cancelado si no entra en distribución.
+- Modifiqué el ejemplo cotizarEnvio para que guarde el response en un json.
+
 ## 0.4.0 - (2020-08-17)
 
 ### Added

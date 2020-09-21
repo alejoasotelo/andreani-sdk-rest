@@ -1,24 +1,19 @@
 <?php
 
-require_once dirname(__DIR__).'/vendor/autoload.php';
+include_once __DIR__.'/config.php';
 
 use AlejoASotelo\Andreani;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$user = 'miuser';
-$pass = 'mipass';
-$cliente = 'CL9999999';
-$debug = true;
+$user = $config->get('user');
+$pass = $config->get('pass');
+$cliente = $config->get('cliente');
+$debug = $config->get('debug', true);
 
 $ws = new Andreani($user, $pass, $cliente, $debug);
 
-
 // Datos de ejemplo obtenidos de https://developers.andreani.com/documentacion/2#crearOrden
 $orden = [
-    'contrato' => '300006611',
+    'contrato' => '400006711',
     'origen' => [
         'postal' => [
             'codigoPostal' => '3378',
@@ -102,7 +97,7 @@ $orden = [
                 ],
             ],
         ],
-    ]
+    ],
 ];
 
 $response = $ws->addOrden($orden);

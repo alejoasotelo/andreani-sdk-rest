@@ -22,5 +22,8 @@
         "psr-4": {
             "AlejoASotelo\\": "src/"
         }
+    },
+    "require-dev": {
+        "joomla/registry": "~1.0"
     }
 }
