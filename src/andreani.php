@@ -15,7 +15,7 @@ class Andreani
     const API_V1 = 1;
     const API_V2 = 2;
 
-    private $version = '0.4.0';
+    private $version = '0.5.0';
 
     private $debug = true;
     private $http = null;
