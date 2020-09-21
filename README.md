@@ -8,18 +8,14 @@
 
 Andreani SDK Rest es una librería para conectar con la Api Rest de Andreani ([ver documentación](https://developers.andreani.com/documentacion)).
 
-Es necesario para poder conectar tus credenciales de Andreani (usuario, contraseña y cliente).
+Es obligatorio para poder conectar con Andreani tus credenciales: usuario, contraseña y cliente.
 
-### Ejemplo:
+### Credenciales Obligatorias:
 ```bash
 Usuario: alejo
 Password: sotelo
 Cliente: CL0009999
 ```
-
-## Artículo en medium
-
-[Ver artículo](https://medium.com/@alejoasotelo/librer%C3%ADa-php-para-andreani-api-rest-128c109f4e0b)
 
 ## Instalación vía Composer
 
@@ -27,29 +23,31 @@ Cliente: CL0009999
 composer require alejoasotelo/andreani
 ```
 
+## Artículo en medium
+
+[Ver artículo](https://medium.com/@alejoasotelo/librer%C3%ADa-php-para-andreani-api-rest-128c109f4e0b)
 
 ## Cómo se utiliza la libreria?
 
-La librería es sencilla, se puede ver ejemplos en la carpeta [examples](examples).
+Se pueden ver ejemplos de uso en la carpeta [examples](examples). Para poder ejecutarlos es necesario renombrar el archivo [config.json.dist](examples/config.json.dist) a config.json y reemplazar las credenciales.
 
+## Funciones
+
+### Inicialización
+
+```php
+require_once __DIR__.'/vendor/autoload.php';
+
+use AlejoASotelo\Andreani;
+
+$ws = new Andreani($user, $pass, $cliente, $debug);
+```
 
 ### getProvincias()
 
 Lista las provinicas reconocidas según [ISO-3166-2:AR](https://es.wikipedia.org/wiki/ISO_3166-2:AR):
 
 ```php
-<?php
-
-require_once __DIR__.'/vendor/autoload.php';
-
-use AlejoASotelo\Andreani;
-
-$user = 'miuser';
-$pass = 'mipass';
-$cliente = 'CL9999999';
-$debug = true;
-
-$ws = new Andreani($user, $pass, $cliente, $debug);
 $result = $ws->getProvincias();
 
 var_dump($result);
@@ -60,10 +58,6 @@ var_dump($result);
 
 Obtener todas las sucursales de Andreani:
 ```php
-<?php
-...
-
-$ws = new Andreani($user, $pass, $cliente, $debug);
 $result = $ws->getSucursales();
 
 var_dump($result);
@@ -74,10 +68,6 @@ var_dump($result);
 
 Obtener las sucursales recomendadas para un código postal usando la api v2:
 ```php
-<?php
-...
-
-$ws = new Andreani($user, $pass, $cliente, $debug);
 $result = $ws->getSucursalByCodigoPostal(1832);
 
 var_dump($result);
@@ -88,10 +78,6 @@ var_dump($result);
 
 Obtener las sucursales recomendadas para un código postal usando la api SOAP:
 ```php
-<?php
-...
-
-$ws = new Andreani($user, $pass, $cliente, $debug);
 $result = $ws->getSucursalByCodigoPostalLegacy(1832);
 
 var_dump($result);
@@ -102,11 +88,6 @@ var_dump($result);
 
 Obtener la cotización para un envío según código postal, contrato, bultos, cliente, etc:
 ```php
-<?php
-...
-
-$ws = new Andreani($user, $pass, $cliente, $debug);
-
 $bultos = array(
     array(
         'volumen' => 200,
@@ -145,10 +126,22 @@ if (!is_null($response) && isset($response->pdf)) {
 
 Ver ejemplo en el archivo [examples/getEtiqueta.php](examples/getEtiqueta.php)
 
-### Cancelar envíos
+### (!) Cancelar envíos
 
 En la nueva API no se pueden cancelar envíos. Andreani toma como cancelado un envío si no entra en distribución.
 
+### Proceso completo de Envío
+
+En el archivo [examples/procesoDeEnvio.php](examples/procesoDeEnvio.php) hay un ejemplo del proceso completo de envío. En cada paso se guarda el response en json y la etiqueta PDF en el último.
+
+Proceso de Envío:
+```txt
+1. Cotizar el Envío
+2. Crear una Orden
+3. Obtener la Orden
+4. Obtener la Trazabilidad
+5. Obtener la Etiqueta.
+```
 
 ## Contacto API Andreani
 
