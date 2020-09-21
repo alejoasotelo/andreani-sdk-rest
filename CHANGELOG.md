@@ -2,6 +2,11 @@
 
 ## 0.5.0 - (2020-09-18)
 
+### Added
+
+- Agregué una config general para todos los ejemplos. Las credenciales ahora se configuraron en el archivo examples/config.json
+- Agregué un ejemplo del proceso completo de envío.
+
 ### Changed
 
 - Corregí la función getEtiqueta para que use la v2 y agregué un ejemplo de cómo usarla.
