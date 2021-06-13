@@ -342,12 +342,9 @@ class Andreani
 
         $this->response = $response;
 
-        // Si es una petición satisfactoria devuelvo el body.
-        if ($response->code >= 200 && $response->code <= 299) {
-            return json_decode($response->body);
-        } else {
-            return null;
-        }
+        // devuelvo respuesta completa, dado que andreani a veces devuelve code = 401 detallando el error en el body
+        $response->body = json_decode($response->body);
+        return $response;
     }
 
     public function getResponse()
