@@ -16,6 +16,8 @@ class Andreani
     const API_V2 = 2;
 
     private $version = '0.5.0';
+    const ETIQUETA_ESTANDAR = '';
+    const ETIQUETA_DOCUMENTO_DE_CAMBIO = 'documentoDeCambio';
 
     private $debug = true;
     private $http = null;
