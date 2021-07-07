@@ -15,9 +15,10 @@ class Andreani
     const API_V1 = 1;
     const API_V2 = 2;
 
-    private $version = '0.5.0';
     const ETIQUETA_ESTANDAR = '';
     const ETIQUETA_DOCUMENTO_DE_CAMBIO = 'documentoDeCambio';
+
+    private $version = '0.6.0';
 
     private $debug = true;
     private $http = null;
@@ -100,6 +101,13 @@ class Andreani
         return false;
     }
 
+    /**
+     * Devuelve las sucursales.
+     * Se puede usar la api v1 o v2 pasando como parámetro $version. 
+     *
+     * @param int $version
+     * @return object
+     */
     public function getSucursales($version = self::API_V2)
     {
         $endpoint = $version == self::API_V1 ? '/v1' : '/v2';

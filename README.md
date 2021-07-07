@@ -112,7 +112,7 @@ Agrega/crea una orden (envío) pasandole como parámetro $data con la info del e
 Ver ejemplo en el archivo [examples/addOrden.php](examples/addOrden.php)
 
 
-### getEtiqueta($numeroAndreani)
+### getEtiqueta($numeroAndreani, $tipo = Andreani::ETIQUETA_ESTANDAR)
 
 Devuelve una etiqueta en formato PDF, que puede ser de bulto o remito a partir del numero andreani brindado en el alta. 
 
@@ -124,11 +124,72 @@ if (!is_null($response) && isset($response->pdf)) {
 }
 ```
 
-Ver ejemplo en el archivo [examples/getEtiqueta.php](examples/getEtiqueta.php)
+Si el envío es un cambio, además de la etiqueta estandar hay que obtener el documento de cambio de la siguiente manera:
+
+```php
+$response = $ws->getEtiqueta($numeroAndreani, Andreani::ETIQUETA_DOCUMENTO_DE_CAMBIO);
+
+if (!is_null($response) && isset($response->pdf)) {
+    file_put_contents(__DIR__.'/getEtiqueta-documentoDeCambio.pdf', $response->pdf);
+}
+```
+
+### getTrazabilidad($numeroAndreani, $apiVersion = Andreani::API_V2)
+
+Devuelve la trazabilidad de un envío. La v1 y v2 son practicamente iguales, solo que en el response de la v2 sacaron algunos campos.
+
+V1:
+```json
+{
+    "eventos": [
+        {
+            "Fecha":"2019-04-11T11:18:47",
+            "Estado":"Pendiente de ingreso",
+            "EstadoId":1,
+            "Motivo":null,
+            "MotivoId":0,
+            "Submotivo":null,
+            "SubmotivoId":0,
+            "Sucursal":"",
+            "SucursalId":0,
+            "Ciclo":""
+        }
+    ]
+}
+```
+
+V2:
+```json
+{
+    "eventos": [
+        {
+            "Fecha": "2021-03-09T11:08:03",
+            "Estado": "Pendiente de ingreso",
+            "EstadoId": 1,
+            "Traduccion": "ENVIO INGRESADO AL SISTEMA",
+            "Sucursal": "Sucursal Genérica",
+            "SucursalId": 999,
+            "Ciclo": "Distribution"
+        }
+    ]
+}
+```
+
+(!) Nota: en la v2 no devuelve el evento "entregado", estan trabajando para agregarlo. Para solventar este problema usar `getOrden()` y chequear el campo `estado` 
+
+```php
+$result = $ws->getTrazabilidad($numeroAndreani);
+
+var_dump($result);
+```
+
+Ver ejemplo en el archivo [examples/getTrazabilidad.php](examples/getTrazabilidad.php)
+
 
 ### (!) Cancelar envíos
 
 En la nueva API no se pueden cancelar envíos. Andreani toma como cancelado un envío si no entra en distribución.
+
 
 ### Proceso completo de Envío
 
@@ -148,6 +209,7 @@ Proceso de Envío:
 Si tenés dudas respecto a la API de Andreani este es el email de ellos: apis[arroba]andreani.com
 
 (!) Aclaración: este es un proyecto personal, yo no tengo ningún tipo de vinculo con Andreani, comparto mi conocimiento en este repositorio.
+
 
 ## Querés colaborar con el proyecto?
 
