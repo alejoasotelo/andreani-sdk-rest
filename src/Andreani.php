@@ -273,9 +273,19 @@ class Andreani
         return $this->makeRequest($uri, 'get');
     }
 
-    public function getTrazabilidad($numeroAndreani)
+    /**
+     * Devuelve las trazas de un envío. 
+     * 
+     * En la v2 no devuelve el estado "entregado".
+     *
+     * @param string $numeroAndreani
+     * @param int $apiVersion
+     * @return void
+     */
+    public function getTrazabilidad($numeroAndreani, $apiVersion = self::API_V1)
     {
-        $uri = $this->getBaseUrl('/v1/envios/'.$numeroAndreani.'/trazas');
+        $endpoint = $apiVersion == self::API_V1 ? '/v1' : '/v2';
+        $uri = $this->getBaseUrl($endpoint . '/envios/'.$numeroAndreani.'/trazas');
 
         return $this->makeRequest($uri, 'get');
     }
