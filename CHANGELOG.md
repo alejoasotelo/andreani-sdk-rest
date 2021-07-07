@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.0 - (2021-07-07)
+
+### Added
+
+- Agregué la función [getVersion](/alejoasotelo/andreani-sdk-rest/blob/6e800018a0dfbff6ffd26bf6f0340440733c0ea6/src/Andreani.php#L58) para saber la versión de la librería
+
+### Changed
+
+- Agregué el argumento $tipo (ETIQUETA_ESTANDAR o ETIQUETA_DOCUMENTO_DE_CAMBIO) a la función [getEtiqueta](/alejoasotelo/andreani-sdk-rest/blob/6e800018a0dfbff6ffd26bf6f0340440733c0ea6/src/Andreani.php#L241) para poder obtener las etiquetas estandar y el documento de cambio para los envíos de tipo cambio.
+- Agregué el argumento $apiVersion a la función [getTrazabilidad](/alejoasotelo/andreani-sdk-rest/blob/6e800018a0dfbff6ffd26bf6f0340440733c0ea6/src/Andreani.php#L295) para poder usar la v1 o v2.
+
+
 ## 0.5.1 - (2020-09-21)
 
 ### Changed
