@@ -219,9 +219,22 @@ class Andreani
         return $this->makeRequest($uri, 'get');
     }
 
-    public function getEtiqueta($numeroAndreani)
+    /**
+     * Devuelve una etiqueta pdf listo para guardar en un archivo.
+     * 
+     * @since 0.6.0 Se agregó el campo $tipo para poder imprimir otro tipo de etiquetas.
+     *
+     * @param string $numeroAndreani
+     * @param string $tipo Andreani::ETIQUETA_ESTANDAR o Andreani::ETIQUETA_DOCUMENTO_DE_CAMBIO
+     * @return object
+     */
+    public function getEtiqueta($numeroAndreani, $tipo = self::ETIQUETA_ESTANDAR)
     {
         $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani.'/etiquetas');
+
+        if (!empty($tipo)) {
+            $uri .= '?tipo=' . $tipo;
+        }
 
         $this->makeRequest($uri, 'get');
         
