@@ -11,7 +11,7 @@ $debug = $config->get('debug', true);
 
 $ws = new Andreani($user, $pass, $cliente, $debug);
 
-$response = $ws->getEtiqueta('360000003170610');
+$response = $ws->getEtiqueta('360000003170610', Andreani::ETIQUETA_ESTANDAR);
 
 var_dump($response);
 
