@@ -52,6 +52,10 @@ class Andreani
         $this->http = new Http($options, $transport);
     }
 
+    public function getVersion() {
+        return $this->version;
+    }
+
     private function getBaseUrl($endpoint = 'login')
     {
         $base = $this->debug ? self::BASE_URL_DEV : self::BASE_URL_PROD;
