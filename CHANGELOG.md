@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.0 - (2021-07-15)
+
+### Added
+
+- Agregué [getCodigoQR](/alejoasotelo/andreani-sdk-rest/blob/010d8d242651e13893d53bc4d36837f845607cbb/src/Andreani.php#L352) para poder generar códigos QR.
+- Agregué un ejemplo de uso de [getCodigoQR](/alejoasotelo/andreani-sdk-rest/blob/010d8d242651e13893d53bc4d36837f845607cbb/examples/getCodigoQR.php).
+- Agregué un ejemplo de uso de [getSucursales](/alejoasotelo/andreani-sdk-rest/blob/010d8d242651e13893d53bc4d36837f845607cbb/examples/getSucursales.php).
+
+### Changed
+
+- Se cambió la firma de `getSucursales($version)` a [`getSucursales($params, $version)`](/alejoasotelo/andreani-sdk-rest/blob/010d8d242651e13893d53bc4d36837f845607cbb/src/Andreani.php#L113)
+
+
 ## 0.6.0 - (2021-07-07)
 
 ### Added
