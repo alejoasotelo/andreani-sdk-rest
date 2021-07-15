@@ -18,7 +18,7 @@ class Andreani
     const ETIQUETA_ESTANDAR = '';
     const ETIQUETA_DOCUMENTO_DE_CAMBIO = 'documentoDeCambio';
 
-    private $version = '0.6.0';
+    private $version = '0.6.1';
 
     private $debug = true;
     private $http = null;
@@ -102,22 +102,29 @@ class Andreani
     }
 
     /**
-     * Devuelve las sucursales.
-     * Se puede usar la api v1 o v2 pasando como parámetro $version. 
+     * Devuelve todas las sucursales usando la api v2 por defecto.
+     * 
+     * @since 0.6.1 Se cambió la firma de getSucursales($version) a getSucursales($params, $version)
      *
+     * @param array $params
      * @param int $version
-     * @return object
+     * @return void
      */
-    public function getSucursales($version = self::API_V2)
+    public function getSucursales($params = null, $version = self::API_V2)
     {
         $endpoint = $version == self::API_V1 ? '/v1' : '/v2';
         $uri = $this->getBaseUrl($endpoint . '/sucursales');
+
+        if (!is_null($params)) {
+            $uri .= '?' . http_build_query($params);
+        }
 
         return $this->makeRequest($uri, 'get');
     }
 
     /**
      * Devuelve las sucursales recomendadas por Andreani según el Código Postal.
+     * Es una shortcut de getSucursales
      *
      * @param int $codigoPostal
      * @param string $canal 'B2C' o 'B2B'
@@ -126,8 +133,6 @@ class Andreani
      */
     public function getSucursalByCodigoPostal($codigoPostal, $canal = 'B2C')
     {
-        $uri = $this->getBaseUrl('/v2/sucursales');
-        
         $canales = ['B2C', 'B2B'];
 
         $params = [
@@ -135,9 +140,7 @@ class Andreani
             'canal' => in_array($canal, $canales) ? $canal : 'B2C',
         ];
 
-        $uri .= '?' . http_build_query($params);
-
-        return $this->makeRequest($uri, 'get');
+        return $this->getSucursales($params, self::API_V2);
     }
 
     /**
