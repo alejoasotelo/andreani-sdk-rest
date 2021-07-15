@@ -134,6 +134,7 @@ if (!is_null($response) && isset($response->pdf)) {
 }
 ```
 
+
 ### getTrazabilidad($numeroAndreani, $apiVersion = Andreani::API_V2)
 
 Devuelve la trazabilidad de un envío. La v1 y v2 son practicamente iguales, solo que en el response de la v2 sacaron algunos campos.
@@ -184,6 +185,42 @@ var_dump($result);
 ```
 
 Ver ejemplo en el archivo [examples/getTrazabilidad.php](examples/getTrazabilidad.php)
+
+
+### getCodigoQR($informacion)
+
+Devuelve un código QR en formato PNG pasandole como parametro un string. Puede ser el numero de envio o se le puede pasar un JSON.
+
+Ejemplo 1:
+```php
+$data = [
+    'numeroDeEnvio' => $numeroDeEnvio
+];
+
+$informacion = json_encode($data);
+
+$response = $ws->getCodigoQR($informacion);
+
+if (!empty($response)) {
+    file_put_contents(__DIR__.'/getCodigoQR.png', $response);
+}
+```
+
+Ejemplo 2:
+
+```php
+$data = [
+    'numeroDeEnvio' => $numeroDeEnvio
+];
+
+$informacion = json_encode($data);
+
+$response = $ws->getCodigoQR($informacion);
+
+if (!empty($response)) {
+    echo '<img src="data:image/png;base64,'.base64_encode($response).'" />';
+}
+```
 
 
 ### (!) Cancelar envíos
