@@ -346,7 +346,16 @@ class Andreani
         return $this->makeRequest($uri, 'get');
     }
 
-    protected function makeRequest($uri, $method = 'get', $data = null)
+    public function getCodigoQR($informacion)
+    {
+        $baseUrl = 'https://' .  ($this->debug ? 'apisqa.andreani.com' : 'apis.andreani.com');
+        
+        $uri = $baseUrl . '/v1/codigos-qr/' . urlencode($informacion);
+        
+        return $this->makeRequest($uri, 'get', null, false);
+    }
+
+    protected function makeRequest($uri, $method = 'get', $data = null, $decodeBody = true)
     {
         if (!is_null($data) && !is_string($data)) {
             $data = json_encode($data);
@@ -381,7 +390,7 @@ class Andreani
 
         // Si es una petición satisfactoria devuelvo el body.
         if ($response->code >= 200 && $response->code <= 299) {
-            return json_decode($response->body);
+            return $decodeBody ? json_decode($response->body) : $response->body;
         } else {
             return null;
         }
