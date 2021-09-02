@@ -27,6 +27,10 @@ composer require alejoasotelo/andreani
 
 [Ver artículo](https://medium.com/@alejoasotelo/librer%C3%ADa-php-para-andreani-api-rest-128c109f4e0b)
 
+## (❗) NOTA
+
+Desde la versión 0.8.0 se actualizaron las urls de desarrollo y producción. Es posible que tengas que pedir un nuevo usuario y contraseña para que funcionen con estas nuevas urls. En este caso es necesario que te contactes con el webservice o tu agente de Andreani.
+
 ## Cómo se utiliza la libreria?
 
 Se pueden ver ejemplos de uso en la carpeta [examples](examples). Para poder ejecutarlos es necesario renombrar el archivo [config.json.dist](examples/config.json.dist) a config.json y reemplazar las credenciales.
