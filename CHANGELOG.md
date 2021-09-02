@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.1 - (2021-09-02)
+
+### Changed
+
+- Corregí el error "Undefined index: x-authorization-token"
+
 ## 0.8.0 - (2021-09-02)
 
 ### Changed
