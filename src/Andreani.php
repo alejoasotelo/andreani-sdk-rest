@@ -9,16 +9,16 @@ use Andreani\Requests\ConsultarSucursales;
 
 class Andreani
 {
-    const BASE_URL_DEV = 'https://api.qa.andreani.com';
-    const BASE_URL_PROD = 'https://api.andreani.com';
-
+    const BASE_URL_DEV = 'https://apisqa.andreani.com';
+    const BASE_URL_PROD = 'https://apis.andreani.com';
+    
     const API_V1 = 1;
     const API_V2 = 2;
 
     const ETIQUETA_ESTANDAR = '';
     const ETIQUETA_DOCUMENTO_DE_CAMBIO = 'documentoDeCambio';
 
-    private $version = '0.7.0';
+    private $version = '0.8.0';
 
     private $debug = true;
     private $http = null;
@@ -93,8 +93,7 @@ class Andreani
         $response = $this->login();
 
         if ($response->code == 200) {
-            $token = $response->headers['X-Authorization-token'];
-
+            $token = $response->headers['x-authorization-token'] ?: $response->headers['X-Authorization-token'];
             return $token;
         }
 
