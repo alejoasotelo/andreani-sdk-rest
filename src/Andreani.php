@@ -93,7 +93,7 @@ class Andreani
         $response = $this->login();
 
         if ($response->code == 200) {
-            $token = $response->headers['x-authorization-token'] ?: $response->headers['X-Authorization-token'];
+            $token = isset($response->headers['x-authorization-token']) ? $response->headers['x-authorization-token'] : $response->headers['X-Authorization-token'];
             return $token;
         }
 
