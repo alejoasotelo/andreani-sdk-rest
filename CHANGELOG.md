@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0 - (2021-09-02)
+
+### Changed
+
+- resolve [#7](/alejoasotelo/andreani-sdk-rest/issues/7) Actualicé los base_url de producción y desarrollo y agregué compatibilidad con el header x-authorization-token (en minúscula).
+
+
 ## 0.7.0 - (2021-07-15)
 
 ### Added
