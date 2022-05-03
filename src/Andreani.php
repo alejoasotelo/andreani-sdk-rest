@@ -383,9 +383,7 @@ class Andreani
 
     public function getCodigoQR($informacion)
     {        
-        $baseUrl = 'https://' .  ($this->debug ? 'apisqa.andreani.com' : 'apis.andreani.com');
-        
-        $uri = $baseUrl . '/v1/codigos-qr/' . urlencode($informacion);
+        $uri = $this->getBaseUrl('/v1/codigos-qr/') . urlencode($informacion);
         
         return $this->makeRequest($uri, 'get', null, false);
     }
