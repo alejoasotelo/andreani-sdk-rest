@@ -63,7 +63,7 @@ class Andreani
     {
         $base = $this->debug ? self::BASE_URL_DEV : self::BASE_URL_PROD;
 
-        return $base.$endpoint;
+        return $base . $endpoint;
     }
 
     public function login($user = null, $password = null)
@@ -107,7 +107,7 @@ class Andreani
      *
      * @param array $params
      * @param int $version
-     * @return void
+     * @return object
      */
     public function getSucursales($params = null, $version = self::API_V2)
     {
@@ -215,7 +215,7 @@ class Andreani
      * @param array $data
      * @param int   $apiVersion @deprecated usar addOrden($data).
      *
-     * @return void
+     * @return object
      */
     public function addOrden($data, $apiVersion = self::API_V1)
     {
@@ -224,6 +224,16 @@ class Andreani
         return $this->makeRequest($uri, 'post', $data);
     }
 
+    /**
+     *
+     * Devuelve una orden de envío
+     * Una órden de envío es un pedido de envío que se le hace a Andreani.
+     * De esta forma Andreani puede planificar la entrega sin tener la carga todavía en su poder.
+     *
+     * @param string $numeroAndreani
+     *
+     * @return object
+     */
     public function getOrden($numeroAndreani)
     {
         $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani);
@@ -261,14 +271,36 @@ class Andreani
         return json_decode($response->body);
     }
 
-    public function getEnvio($numeroAndreani)
+    /**
+     * Devuelve un envio.
+     * Se utiliza la api v1 por defecto por compatibilidad, pero se recomienda utilizar la v2.
+     * 
+     * @since 0.8.2 Se agregó el parámetro $apiVersion para poder utilizar v1 o v2.
+     *
+     * @param string $numeroAndreani
+     * @param string $apiVersion 
+     * @return object
+     */
+    public function getEnvio($numeroAndreani, $apiVersion = self::API_V1)
     {
-        $uri = $this->getBaseUrl('/v1/envios/'.$numeroAndreani);
+        $endpoint = $apiVersion == self::API_V1 ? '/v1' : '/v2';
+        $uri = $this->getBaseUrl($endpoint . '/envios/'.$numeroAndreani);
 
         return $this->makeRequest($uri, 'get');
     }
 
-    public function searchEnvio($codigoCliente = null, $idProducto = null, $dniDestinatario = null, $fechaCreacionDesde = null, $fechaCreacionHasta = null)
+    /**
+     * Busca envios según los parámetros indicados.
+     *
+     * @param string $codigoCliente
+     * @param string $idProducto
+     * @param string $dniDestinatario
+     * @param datetime $fechaCreacionDesde Ej: 2019-07-10T14:00:55
+     * @param datetime $fechaCreacionHasta Ej: 2019-07-10T14:00:55
+     * @param int $apiVersion
+     * @return object
+     */
+    public function searchEnvio($codigoCliente = null, $idProducto = null, $dniDestinatario = null, $fechaCreacionDesde = null, $fechaCreacionHasta = null, $apiVersion = self::API_V1)
     {
         $codigoCliente = is_null($codigoCliente) ? $this->cliente : $codigoCliente;
 
@@ -280,7 +312,8 @@ class Andreani
             'fechaCreacionHasta' => $fechaCreacionHasta,
         );
 
-        $uri = $this->getBaseUrl('/v1/envios').'?'.http_build_query($params);
+        $endpoint = $apiVersion == self::API_V1 ? '/v1' : '/v2';
+        $uri = $this->getBaseUrl($endpoint . '/envios').'?'.http_build_query($params);
 
         return $this->makeRequest($uri, 'get');
     }
@@ -292,7 +325,7 @@ class Andreani
      *
      * @param string $numeroAndreani
      * @param int $apiVersion
-     * @return void
+     * @return object
      */
     public function getTrazabilidad($numeroAndreani, $apiVersion = self::API_V1)
     {
@@ -349,7 +382,7 @@ class Andreani
     }
 
     public function getCodigoQR($informacion)
-    {
+    {        
         $baseUrl = 'https://' .  ($this->debug ? 'apisqa.andreani.com' : 'apis.andreani.com');
         
         $uri = $baseUrl . '/v1/codigos-qr/' . urlencode($informacion);
