@@ -18,7 +18,7 @@ class Andreani
     const ETIQUETA_ESTANDAR = '';
     const ETIQUETA_DOCUMENTO_DE_CAMBIO = 'documentoDeCambio';
 
-    private $version = '0.8.1';
+    private $version = '0.8.2';
 
     private $debug = true;
     private $http = null;
