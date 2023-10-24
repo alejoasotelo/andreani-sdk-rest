@@ -4,21 +4,19 @@ namespace AlejoASotelo;
 
 use Joomla\Http\Transport\Curl as curlTransport;
 use Joomla\Http\Http;
-use Andreani\Andreani as AndreaniLegacy;
-use Andreani\Requests\ConsultarSucursales;
 
 class Andreani
 {
     const BASE_URL_DEV = 'https://apisqa.andreani.com';
     const BASE_URL_PROD = 'https://apis.andreani.com';
-    
+
     const API_V1 = 1;
     const API_V2 = 2;
 
     const ETIQUETA_ESTANDAR = '';
     const ETIQUETA_DOCUMENTO_DE_CAMBIO = 'documentoDeCambio';
 
-    private $version = '0.8.2';
+    private $version = '0.9.0';
 
     private $debug = true;
     private $http = null;
@@ -42,7 +40,7 @@ class Andreani
         $this->token = null;
 
         $options = array(
-            'curl.certpath' => __DIR__.'/vendor/joomla/http/src/Transport/cacert.pem',
+            'curl.certpath' => __DIR__ . '/vendor/joomla/http/src/Transport/cacert.pem',
             'transport.curl' => array(
                 CURLOPT_SSL_VERIFYHOST => 0,
                 CURLOPT_SSL_VERIFYPEER => 0,
@@ -55,7 +53,8 @@ class Andreani
         $this->http = new Http($options, $transport);
     }
 
-    public function getVersion() {
+    public function getVersion()
+    {
         return $this->version;
     }
 
@@ -71,10 +70,10 @@ class Andreani
         $user = !is_null($user) ? $user : $this->user;
         $password = !is_null($password) ? $password : $this->password;
 
-        $hash = $user.':'.$password;
+        $hash = $user . ':' . $password;
         // Set up custom headers for a single request.
         $headers = array(
-            'Authorization' => 'Basic '.base64_encode($hash),
+            'Authorization' => 'Basic ' . base64_encode($hash),
             'Content-Type' => 'application/json',
         );
 
@@ -143,30 +142,27 @@ class Andreani
     }
 
     /**
-     * Devuelve las sucursales recomendadas por Andreani
-     * según el Código Postal. Utiliza el webservice viejo (SOAP).
+     * Devuelve todas los puntos de terceros
+     * 
+     * @since 0.9.0
      *
-     * @param int $codigoPostal
-     *
-     * @return array
+     * @param string $contrato
+     * @param array $params
+     * @return object
      */
-    public function getSucursalByCodigoPostalLegacy($codigoPostal)
+    public function getPuntosDeTerceros($contrato, $params = null)
     {
-        trigger_error('Esta funcion será deprecada por usar la versión vieja de Andreani (SOAP). Usar getSucursalByCoditoPostal($coditoPostal)', E_USER_NOTICE);
+        $uri = $this->getBaseUrl('/v2/puntos-de-tercero');
 
-        $request = new ConsultarSucursales();
-        $request->setCodigoPostal($codigoPostal);
+        $paramsQuery = ['contrato' => $contrato];
 
-        $andreani = new AndreaniLegacy($this->user, $this->password, $this->debug ? 'test' : 'prod');
-        $response = $andreani->call($request);
-
-        if ($response->isValid()) {
-            $result = $response->getMessage()->ConsultarSucursalesResult;
-
-            return $result;
-        } else {
-            return null;
+        if (!is_null($params)) {
+            $paramsQuery = array_merge($paramsQuery, $params);
         }
+
+        $uri .= '?' . http_build_query($paramsQuery);
+
+        return $this->makeRequest($uri, 'get');
     }
 
     public function getProvincias()
@@ -236,7 +232,7 @@ class Andreani
      */
     public function getOrden($numeroAndreani)
     {
-        $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani);
+        $uri = $this->getBaseUrl('/v2/ordenes-de-envio/' . $numeroAndreani);
 
         return $this->makeRequest($uri, 'get');
     }
@@ -252,14 +248,14 @@ class Andreani
      */
     public function getEtiqueta($numeroAndreani, $tipo = self::ETIQUETA_ESTANDAR)
     {
-        $uri = $this->getBaseUrl('/v2/ordenes-de-envio/'.$numeroAndreani.'/etiquetas');
+        $uri = $this->getBaseUrl('/v2/ordenes-de-envio/' . $numeroAndreani . '/etiquetas');
 
         if (!empty($tipo)) {
             $uri .= '?tipo=' . $tipo;
         }
 
         $this->makeRequest($uri, 'get');
-        
+
         $response = $this->getResponse();
 
         if ($response->code == 200) {
@@ -267,7 +263,7 @@ class Andreani
                 'pdf' => $response->body
             );
         }
-        
+
         return json_decode($response->body);
     }
 
@@ -284,7 +280,7 @@ class Andreani
     public function getEnvio($numeroAndreani, $apiVersion = self::API_V1)
     {
         $endpoint = $apiVersion == self::API_V1 ? '/v1' : '/v2';
-        $uri = $this->getBaseUrl($endpoint . '/envios/'.$numeroAndreani);
+        $uri = $this->getBaseUrl($endpoint . '/envios/' . $numeroAndreani);
 
         return $this->makeRequest($uri, 'get');
     }
@@ -313,7 +309,7 @@ class Andreani
         );
 
         $endpoint = $apiVersion == self::API_V1 ? '/v1' : '/v2';
-        $uri = $this->getBaseUrl($endpoint . '/envios').'?'.http_build_query($params);
+        $uri = $this->getBaseUrl($endpoint . '/envios') . '?' . http_build_query($params);
 
         return $this->makeRequest($uri, 'get');
     }
@@ -330,7 +326,7 @@ class Andreani
     public function getTrazabilidad($numeroAndreani, $apiVersion = self::API_V1)
     {
         $endpoint = $apiVersion == self::API_V1 ? '/v1' : '/v2';
-        $uri = $this->getBaseUrl($endpoint . '/envios/'.$numeroAndreani.'/trazas');
+        $uri = $this->getBaseUrl($endpoint . '/envios/' . $numeroAndreani . '/trazas');
 
         return $this->makeRequest($uri, 'get');
     }
@@ -376,15 +372,15 @@ class Andreani
             $params['pais'] = $pais;
         }
 
-        $uri = $this->getBaseUrl('/v1/tarifas').'?'.http_build_query($params);
+        $uri = $this->getBaseUrl('/v1/tarifas') . '?' . http_build_query($params);
 
         return $this->makeRequest($uri, 'get');
     }
 
     public function getCodigoQR($informacion)
-    {        
+    {
         $uri = $this->getBaseUrl('/v1/codigos-qr/') . urlencode($informacion);
-        
+
         return $this->makeRequest($uri, 'get', null, false);
     }
 
