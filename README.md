@@ -29,7 +29,8 @@ composer require alejoasotelo/andreani
 
 ## (❗) NOTA
 
-Desde la versión 0.8.0 se actualizaron las urls de desarrollo y producción. Es posible que tengas que pedir un nuevo usuario y contraseña para que funcionen con estas nuevas urls. En este caso es necesario que te contactes con el webservice o tu agente de Andreani.
+- Desde la versión 0.8.0 se actualizaron las urls de desarrollo y producción. Es posible que tengas que pedir un nuevo usuario y contraseña para que funcionen con estas nuevas urls. En este caso es necesario que te contactes con el webservice o tu agente de Andreani.
+- Desde la versión 0.9.0 se eliminó la función getSucursalByCodigoPostalLegacy.
 
 ## Cómo se utiliza la libreria?
 
@@ -83,6 +84,16 @@ var_dump($result);
 Obtener las sucursales recomendadas para un código postal usando la api SOAP:
 ```php
 $result = $ws->getSucursalByCodigoPostalLegacy(1832);
+
+var_dump($result);
+```
+
+
+### getPuntosDeTerceros()
+
+Obtener todas los puntos de terceros (HOP) de Andreani:
+```php
+$result = $ws->getPuntosDeTerceros();
 
 var_dump($result);
 ```
