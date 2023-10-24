@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.0 - (2023-10-24)
+
+### Added
+
+- Agregué [getPuntosDeTerceros](/alejoasotelo/andreani-sdk-rest/blob/37a4060e2778fa66bf3c1724071eab7cfc1293c6/src/Andreani.php#L153) para poder obtener los puntos de terceros.
+- Agregué un ejemplo de uso de [getPuntosDeTerceros](/alejoasotelo/andreani-sdk-rest/blob/37a4060e2778fa66bf3c1724071eab7cfc1293c6/examples/getPuntosDeTerceros.php).
+
+### Changed
+
+- Se eliminó la función getSucursalByCodigoPostalLegacy porque usaba SOAP que no se usa más
+
 ## 0.8.2 - (2022-05-03)
 
 ### Changed
